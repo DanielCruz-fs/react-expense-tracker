@@ -45,7 +45,8 @@ function App() {
              ** In order to shift the 1st item to the top change the order and
              ** do not use useState anymore for title just use it as a prop directly.
              */
-            return [...prevExpenses, newExpense];
+            // return [...prevExpenses, newExpense];
+            return [newExpense, ...prevExpenses];
         });
     };
 

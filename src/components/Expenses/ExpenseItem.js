@@ -15,8 +15,8 @@ import { useState } from 'react';
 
 //* You can use this ES6 syntax
 const ExpenseItem = (props) => {
-    const [title, setTitle] = useState(props.title);
-    console.log(':: Title ::', title);
+    // const [title, setTitle] = useState(props.title);
+    // console.log(':: Title ::', title);
     // const clickHandler = () => {
     //     setTitle('Title Updated!!!');
     //     console.log(':: React schedule this update ::', title);
@@ -26,8 +26,8 @@ const ExpenseItem = (props) => {
         <Card className="expense-item">
             <div className="expense-item__description">
                 <ExpenseDate date={props.date}/>
-                <h2>{title}</h2>
-                {/* <h2>{props.title}</h2> */}
+                {/* <h2>{title}</h2> */}
+                <h2>{props.title}</h2>
                 <div className="expense-item__price">${props.amount}</div>
                 {/* <button onClick={clickHandler}>Click Me</button> */}
             </div>
