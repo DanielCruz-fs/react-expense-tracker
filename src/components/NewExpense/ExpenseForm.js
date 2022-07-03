@@ -46,7 +46,7 @@ const ExpenseForm = props => {
         const finalDateObject = new Date(dateArray[0], dateArray[1] ? dateArray[1] - 1 : 0, dateArray[2]);
         //* Communication child to parent
         props.onSaveExpenseData({...userInput, date: finalDateObject});
-        setUserInput( () => {  return {title: '', amount: '', date: ''} });
+        setUserInput({title: '', amount: '', date: ''});
     };
 
     return (
