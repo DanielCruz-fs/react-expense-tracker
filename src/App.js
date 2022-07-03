@@ -1,10 +1,9 @@
 import './App.css';
+import { useState } from 'react';
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpense/NewExpense';
 
-// * In JSX custom components must be Upper case that's how React knows the difference
-function App() {
-    const expenses = [
+const DUMMY_EXPENSES = [
         {
             id: 'e1',
             title: 'Toilet Paper',
@@ -30,15 +29,30 @@ function App() {
             date: new Date(2021, 5, 12),
         },
     ];
-    
-    const addExpenseHandler = expense => {
-        console.log(':: RECEIVED DATA IN APP.JS ::', expense)
+
+// * In JSX custom components must be Upper case that's how React knows the difference
+function App() {
+    //* We need to use useState to make a property reactive
+    const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
+
+    const addExpenseHandler = newExpense => {
+        console.log(':: RECEIVED DATA IN APP.JS ::', newExpense)
+        setExpenses(prevExpenses => {
+            /**
+             ** THIS IS THE KEY TO UNDERSTAND useState in REACT
+             ** if you change the order as follow: return [newExpense, ...prevExpenses]
+             ** you'll face the bug due to using useState for property: title
+             ** In order to shift the 1st item to the top change the order and
+             ** do not use useState anymore for title just use it as a prop directly.
+             */
+            return [...prevExpenses, newExpense];
+        });
     };
 
     return (
         <div className='App'>
             <NewExpense onAddExpense={addExpenseHandler}/>
-            <Expenses expenses={expenses}/>
+            <Expenses items={expenses}/>
         </div>
     );
 }

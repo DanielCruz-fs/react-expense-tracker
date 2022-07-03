@@ -41,8 +41,11 @@ const ExpenseForm = props => {
     const submitHandler = event => {
         event.preventDefault();
         console.log(':: USER INPUT OBJECT TO ADD ::', userInput);
+
+        const dateArray = userInput.date.split('-');
+        const finalDateObject = new Date(dateArray[0], dateArray[1] ? dateArray[1] - 1 : 0, dateArray[2]);
         //* Communication child to parent
-        props.onSaveExpenseData(userInput);
+        props.onSaveExpenseData({...userInput, date: finalDateObject});
         setUserInput( () => {  return {title: '', amount: '', date: ''} });
     };
 
